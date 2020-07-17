@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidarCamposService } from 'src/app/shared/components/campos/validar-campos.service';
 import { FilmesService } from '../../core/filmes.service';
 import { Filme } from '../../shared/models/filme';
+import { Alerta } from 'src/app/shared/models/alerta';
 
 @Component({
   selector: 'dio-cadastro-filmes',
@@ -15,7 +16,7 @@ export class CadastroFilmesComponent implements OnInit {
 
   cadastro: FormGroup;
   generos: Array<string>
-
+ 
   constructor(public validacao: ValidarCamposService, 
     public dialog: MatDialog,
     private fb: FormBuilder,
@@ -59,7 +60,15 @@ export class CadastroFilmesComponent implements OnInit {
 
   private salvar(filme: Filme): void{
     this.filmeService.salvar(filme).subscribe(() =>{
-      const dialogRef = this.dialog.open(AlertaComponent)
+      const config ={
+        data: {
+          btnSucesso: 'Ir para listagem',
+          btnCancelar: 'Cadastrar novo filme',
+          corBtnCancelar: 'primary',
+          possuirBtnFechar: true
+        } as Alerta
+      }
+      const dialogRef = this.dialog.open(AlertaComponent, config)
     },
     () => {
       alert('Erro ao salvar')
