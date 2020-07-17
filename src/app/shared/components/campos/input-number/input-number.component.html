@@ -10,7 +10,11 @@
         [step]="step"
     >
       <mat-error *ngIf="validacao.hasErrorValidar(formControl,'required')">Campo Obrigatório</mat-error>
-      <mat-error *ngIf="validacao.hasErrorValidar(formControl,'min')">Campo precisa ser maior que 0</mat-error>
-      <mat-error *ngIf="validacao.hasErrorValidar(formControl,'max')">Campo precisa ser menor ou igual a 10</mat-error> 
+      <mat-error *ngIf="validacao.hasErrorValidar(formControl,'min')">
+        Campo precisa ser maior que {{validacao.lengthValidar(formControl,'min')}}
+      </mat-error>
+      <mat-error *ngIf="validacao.hasErrorValidar(formControl,'max')">
+        Campo precisa ser menor ou igual a {{validacao.lengthValidar(formControl,'max')}}
+      </mat-error> 
   </mat-form-field>
 </div>
