@@ -30,7 +30,7 @@ export class CadastroFilmesComponent implements OnInit {
   }
     
   salvar(): void {
-    this.cadastro.markAsTouched()
+    this.cadastro.markAllAsTouched()
     if(this.cadastro.invalid){
       return
     }
