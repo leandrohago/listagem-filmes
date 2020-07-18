@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilmesService } from '../../core/filmes.service';
 import { Filme } from 'src/app/shared/models/filme';
 import { ConfigParams } from '../../shared/models/config-params';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'dio-listagem-filmes',
@@ -10,6 +11,8 @@ import { ConfigParams } from '../../shared/models/config-params';
   styleUrls: ['./listagem-filmes.component.scss']
 })
 export class ListagemFilmesComponent implements OnInit {
+
+  readonly semFoto = 'https://www.aracas.ba.gov.br/visao/assets/images/no-image.jpg'
 
   config: ConfigParams = {
     limite: 4,
@@ -29,7 +32,9 @@ export class ListagemFilmesComponent implements OnInit {
         genero: ['']
       })
 
-    this.filtrosListagem.get('texto').valueChanges.subscribe((val: string) =>{
+    this.filtrosListagem.get('texto').valueChanges
+    .pipe(debounceTime(500))
+    .subscribe((val: string) =>{
       this.config.pesquisa = val
       this.resetarConsulta()
     })
