@@ -8,6 +8,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { CadastroFilmesComponent } from './cadastro-filmes/cadastro-filmes.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.component';
+import { VisualizarFilmesComponent } from './visualizar-filmes/visualizar-filmes.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { ListagemFilmesComponent } from './listagem-filmes/listagem-filmes.compo
     CamposModule,
     InfiniteScrollModule
   ],
-  declarations: [CadastroFilmesComponent, ListagemFilmesComponent]
+  declarations: [CadastroFilmesComponent, ListagemFilmesComponent, VisualizarFilmesComponent]
 })
 export class FilmesModule { }
